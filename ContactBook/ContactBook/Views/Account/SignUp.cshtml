@@ -1,0 +1,262 @@
+﻿@model ContactBook.Models.SignUpModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+@*<h1>SignUp</h1>
+    <head>
+    <style>
+        .button {
+            background-color: Grey; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+    </head>
+    <body>
+    <form asp-action="dosignup" asp-controller="account">
+        <table>
+            <tr>
+                <td colspan="2">FirstName:</td>
+                <td>@Html.TextBoxFor(m => m.FirstName)</td>
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.FirstName)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Lastname:</td>
+                <td>@Html.TextBoxFor(m => m.LastName)</td>
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.LastName)</td>
+            </tr>
+            <tr>
+                <td colspan="2">Account Type:</td>
+                <td>
+                    @Html.DropDownListFor(m => m.type, new List<SelectListItem>
+                   { new SelectListItem{Text="Buyer", Value="Buyer"},
+                     new SelectListItem{Text="Seller", Value="Seller"}}, "Please select")
+                </td>
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.type)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Username:</td>
+                <td>@Html.TextBoxFor(m => m.Username)</td>
+
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.Username)</td>
+            </tr>
+            <tr>
+                <td colspan="2">Password:</td>
+
+                <td>@Html.PasswordFor(m => m.Password)</td>
+
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.Password)</td>
+            </tr>
+            <tr>
+                <td colspan="2">Full Address:</td>
+                <td>@Html.TextBoxFor(m => m.Address)</td>
+
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.Address)</td>
+            </tr>
+            <tr>
+                <td colspan="2">Mobile Number:</td>
+                <td>@Html.TextBoxFor(m => m.Cell)</td>
+
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.Cell)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Date Of Birth:</td>
+
+                <td>
+                    @Html.TextBoxFor(model => model.DOB,
+           new { @type = "date", @Value = Model.DOB.ToString("yyyy-MM-dd") })
+                </td>
+                <td style="color:red;">@Html.ValidationMessageFor(m => m.DOB)</td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button class="button button2" type="submit">signup</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+        </body>*@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        input[type=password], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form asp-action="dosignup" asp-controller="account" align="center">
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">First Name - </label>
+                </div>
+                <div class="col-75">
+                    @Html.TextBoxFor(m => m.FirstName)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.FirstName)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">LastName - </label>
+                    
+                </div>
+                <div class="col-75">
+                    @Html.PasswordFor(m => m.LastName)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.LastName)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Account Type">Account Type - </label>
+                </div>
+
+                <div class="col-75">
+                    @Html.DropDownListFor(m => m.type, new List<SelectListItem>
+                   { new SelectListItem{Text="Buyer", Value="Buyer"},
+                     new SelectListItem{Text="Seller", Value="Seller"}}, "Please select")
+                <div style="color:red;">@Html.ValidationMessageFor(m => m.type)</div>
+            </div>
+                </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Username - </label>
+                </div>
+                <div class="col-75">
+                    @Html.TextBoxFor(m => m.Username)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.Username)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Password">Password - </label>
+                </div>
+                <div class="col-75">
+                    @Html.PasswordFor(m => m.Password)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.Password)</div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Address - </label>
+                </div>
+                <div class="col-75">
+                    @Html.TextBoxFor(m => m.Address)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.Address)</div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Mobile - </label>
+                </div>
+                <div class="col-75">
+                    @Html.TextBoxFor(m => m.Cell)
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.Cell)</div>
+
+                </div>
+                            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">DOB - </label>
+                </div>
+                <div class="col-75">
+                    @Html.TextBoxFor(model => model.DOB,
+                    new { @type = "date", @Value = Model.DOB.ToString("") })
+                    <div style="color:red;">@Html.ValidationMessageFor(m => m.DOB)</div>
+
+                </div>
+                            </div>
+            <br><br>
+
+            <button class="btn btn-primary" type="submit">Signup</button><br><br>
+        </form>
+    </div>
+</body>
+</html>

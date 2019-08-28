@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ContactBook.Models.Contact>
+
+@{
+    ViewData["Title"] = "Home";
+}
+<form asp-controller="Contacts" asp-action="Index">
+    <p align="center">
+        <strong>Item</strong>: <input type="text" name="SearchString">
+                              
+        <input type="submit" class="btn btn-primary" value="Search" />
+    </p>
+    <br><br>
+</form>
+<input type="button" class="btn btn-primary" title="Create" value="Add Product" onclick="location.href='@Url.Action("Create", "Contacts")'" />
+<br><br>
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                Quantity(in Kg)
+            </th>
+            <th>
+                Price(in Rs)
+            </th>
+            <th>
+                Location of Item
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    <input type="button" title="Edit" class="btn btn-primary" value="Edit" onclick="location.href='@Url.Action("Edit", "Contacts", new { id = item.Id })'" />
+        <input type="button" class="btn btn-primary" title="Details" value="Details" onclick="location.href='@Url.Action("Details", "Contacts", new { id = item.Id })'" />
+        <input type="button" class="btn btn-primary" title="Delete" value="Delete" onclick="location.href='@Url.Action("Delete", "Contacts", new { id = item.Id })'" />
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

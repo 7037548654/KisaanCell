@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ContactBook.Models.Contact>
+@{
+    ViewData["Title"] = "Index";
+}
+<form asp-controller="Buyer" asp-action="Index">
+    <p align="center">
+        <strong>Item:</strong> <input type="text" name="SearchString">
+        <input type="submit" class="btn btn-primary" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                Quantity(in kg)
+            </th>
+            <th>
+                Price(in Rs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @*<a asp-action="Buy" asp-route-id="@item.Id">Buy</a>|
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+                    <input type="button" class="btn btn-primary" title="Details" value="Details" onclick="location.href='@Url.Action("Details", "Buyer", new { id = item.Id })'" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

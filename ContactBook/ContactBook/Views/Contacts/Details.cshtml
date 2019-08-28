@@ -1,0 +1,44 @@
+﻿@model ContactBook.Models.Contact
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item)
+        </dd>
+        <dt class="col-sm-2">
+            Quantity(in Kg)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+           Price(in Rs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Location of Item
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <input type="button" title="Edit" class="btn btn-primary" value="Edit" onclick="location.href='@Url.Action("Edit", "Contacts", new { id = Model.Id })'" />
+    <input type="button" class="btn btn-primary" title="Create" value="Back To List" onclick="location.href='@Url.Action("Index", "Contacts")'" />
+</div>
